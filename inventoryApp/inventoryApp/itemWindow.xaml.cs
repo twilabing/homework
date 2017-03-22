@@ -20,7 +20,7 @@ namespace inventoryApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (uxitemDescription != null)
+            if (Inventory != null)
             {
                 uxSubmit.Content = "Update";
             }
@@ -34,12 +34,11 @@ namespace inventoryApp
 
         private void uxSubmit_Click(object sender, RoutedEventArgs e)
         {
-            Inventory = new inventoryModel();
-
-            Inventory.itemDescription = uxitemDescription.Text;
-            Inventory.pricePerItem = decimal.Parse(uxpricePerItem.Text);
-            Inventory.quantityOnHand = int.Parse(uxquantityOnHand.Text);
-            Inventory.ourCostPerItem = decimal.Parse(uxourCostPerItem.Text);
+            //Inventory = new inventoryModel();
+            //Inventory.itemDescription = uxitemDescription.Text;
+            //Inventory.pricePerItem = decimal.Parse(uxpricePerItem.Text);
+            //Inventory.quantityOnHand = int.Parse(uxquantityOnHand.Text);
+            //Inventory.ourCostPerItem = decimal.Parse(uxourCostPerItem.Text);
 
             DialogResult = true;
             Close();
