@@ -46,19 +46,20 @@ namespace inventoryRepository
                   itemDescription = t.itemDescription,
                   pricePerItem = t.pricePerItem,
                   quantityOnHand = t.quantityOnHand,
-                  ourCostPerItem = t.ourCostPerItem
+                  ourCostPerItem = t.ourCostPerItem,
+                  valueOfItem = (decimal)t.valueOfItem,
               }).ToList();
 
             return items;
         }
 
-        public bool Update(inventoryModel inventoryModel)
+        public bool Update(inventoryModel InventoryModel)
         {
-            var original = DatabaseManager.Instance.ITEMS.Find(inventoryModel.itemNum);
+            var original = DatabaseManager.Instance.ITEMS.Find(InventoryModel.itemNum);
 
             if (original != null)
             {
-                DatabaseManager.Instance.Entry(original).CurrentValues.SetValues(ToDbModel(inventoryModel));
+                DatabaseManager.Instance.Entry(original).CurrentValues.SetValues(ToDbModel(InventoryModel));
                 DatabaseManager.Instance.SaveChanges();
             }
 
@@ -90,7 +91,7 @@ namespace inventoryRepository
                 pricePerItem = inventoryModel.pricePerItem,
                 quantityOnHand = inventoryModel.quantityOnHand,
                 ourCostPerItem = inventoryModel.ourCostPerItem
-                //,valueOfItem = inventoryModel.valueOfItem
+                ,valueOfItem = inventoryModel.valueOfItem
             };
 
             return inventoryDb;

@@ -37,9 +37,9 @@ namespace inventoryApp
             Inventory = new inventoryModel();
 
             Inventory.itemDescription = uxitemDescription.Text;
-            Inventory.pricePerItem = int.Parse(uxpricePerItem.Text);
+            Inventory.pricePerItem = decimal.Parse(uxpricePerItem.Text);
             Inventory.quantityOnHand = int.Parse(uxquantityOnHand.Text);
-            Inventory.ourCostPerItem = int.Parse(uxourCostPerItem.Text);
+            Inventory.ourCostPerItem = decimal.Parse(uxourCostPerItem.Text);
 
             DialogResult = true;
             Close();

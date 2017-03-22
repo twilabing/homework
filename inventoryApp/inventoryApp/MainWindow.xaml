@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:inventoryApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="1000">
     <StackPanel Orientation="Vertical">
         <Menu>
             <MenuItem Header="_File">
@@ -24,11 +24,12 @@
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding itemNum}" Header="itemNum" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding itemDescription}" Header="itemDescription" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding pricePerItem}" Header="pricePerItem" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding quantityOnHand}" Header="quantityOnHand" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding ourCostPerItem}" Header="ourCostPerItem" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding itemNum}" Header="Item Number" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding itemDescription}" Header="Item Description" Width="200" />
+                    <GridViewColumn DisplayMemberBinding="{Binding pricePerItem}" Header="Price Per Item" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding quantityOnHand}" Header="Quantity On Hand" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding ourCostPerItem}" Header="Our Cost Per Item" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding valueOfItem}" Header="Value Of Item" Width="100" />
                 </GridView>
             </ListView.View>
         </ListView>
