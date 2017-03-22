@@ -1,0 +1,44 @@
+﻿<Window x:Class="inventoryApp.inventoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:inventoryApp"
+        mc:Ignorable="d"
+        Title="inventoryWindow" Width="300" Height="240"
+        FocusManager.FocusedElement="{Binding ElementName=uxitemDescription}"
+        Loaded="Window_Loaded">
+
+    <Grid x:Name="uxGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right">Item Description:</TextBlock>
+        <TextBox x:Name="uxitemDescription" Text="{Binding itemDescription}" Grid.Column="1" Grid.Row="0"></TextBox>
+
+        <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right">Price Per Item:</TextBlock>
+        <TextBox x:Name="uxpricePerItem" Text="{Binding pricePerItem}" Grid.Column="1" Grid.Row="1"></TextBox>
+
+        <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right">Quantity On Hand:</TextBlock>
+        <TextBox x:Name="uxquantityOnHand" Text="{Binding quantityOnHand}" Grid.Column="1" Grid.Row="2"></TextBox>
+
+        <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right">Our Cost Per Item:</TextBlock>
+        <TextBox x:Name="uxourCostPerItem" Text="{Binding ourCostPerItem}" Grid.Column="1" Grid.Row="3"></TextBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right">
+            <Button x:Name="uxSubmit"  MinWidth="10" HorizontalAlignment="Center" Click="uxSubmit_Click" Margin="10">Add</Button>
+            <Button x:Name="uxCancel"  MinWidth="10" HorizontalAlignment="Center" Click="uxCancel_Click" Margin="10">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Window>

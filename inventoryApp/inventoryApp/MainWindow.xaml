@@ -1,0 +1,36 @@
+﻿<Window x:Class="inventoryApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:inventoryApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel Orientation="Vertical">
+        <Menu>
+            <MenuItem Header="_File">
+                <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click" />
+                <MenuItem x:Name="uxFileDelete" Header="_Delete" Click="uxFileDelete_Click" Loaded="uxFileDelete_Loaded" />
+                <MenuItem x:Name="uxFileChange" Header="_Modify" Click="uxFileChange_Click" Loaded="uxFileChange_Loaded" />
+            </MenuItem>
+        </Menu>
+        <ListView x:Name="uxinventoryList" Height="200" SelectionChanged="uxinventoryList_SelectionChanged">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="uxContextFileNew" Header="_New" Click="uxFileNew_Click"/>
+                    <MenuItem x:Name="uxContextFileChange" Header="_Modify" Click="uxFileChange_Click" />
+                    <MenuItem x:Name="uxContextFileDelete" Header="_Delete" Click="uxFileDelete_Click" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding itemNum}" Header="itemNum" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding itemDescription}" Header="itemDescription" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding pricePerItem}" Header="pricePerItem" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding quantityOnHand}" Header="quantityOnHand" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding ourCostPerItem}" Header="ourCostPerItem" Width="100" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</Window>
