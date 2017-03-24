@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:inventoryApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="1000">
+        Title="Nursery Inventory" Height="600" Width="1000">
 
     <Window.Background>
         <ImageBrush ImageSource="/image/flowers.jpg" />
@@ -31,11 +31,11 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding itemNum}" Header="Item Number" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding itemDescription}" Header="Item Description" Width="200" />
-                    <GridViewColumn DisplayMemberBinding="{Binding pricePerItem,StringFormat='{}{0:C}'}" Header="Price Per Item" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding quantityOnHand}" Header="Quantity On Hand" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding ourCostPerItem,StringFormat='{}{0:C}'}" Header="Our Cost Per Item" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding valueOfItem,StringFormat='{}{0:C}'}" Header="Value Of Item" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding itemDescription}" Header="Item Description" Width="250" />
+                    <GridViewColumn DisplayMemberBinding="{Binding pricePerItem,StringFormat='{}{0:C}'}" Header="Price Per Item" Width="150" />
+                    <GridViewColumn DisplayMemberBinding="{Binding quantityOnHand}" Header="Quantity On Hand" Width="150" />
+                    <GridViewColumn DisplayMemberBinding="{Binding ourCostPerItem,StringFormat='{}{0:C}'}" Header="Our Cost Per Item" Width="150" />
+                    <GridViewColumn DisplayMemberBinding="{Binding valueOfItem,StringFormat='{}{0:C}'}" Header="Value Of Item" Width="150" />
                 </GridView>
             </ListView.View>
         </ListView>

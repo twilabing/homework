@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:inventoryApp"
         mc:Ignorable="d"
-        Title="inventoryWindow" Width="300" Height="240"
+        Title="Nursery Item" Width="400" Height="400"
         FocusManager.FocusedElement="{Binding ElementName=uxitemDescription}"
         Loaded="Window_Loaded">
+    <Window.Background>
+        <ImageBrush ImageSource="/image/flower.jpg" />
+        <!-- Pick any image that you have-->
+    </Window.Background>
+
 
     <Grid x:Name="uxGrid">
         <Grid.ColumnDefinitions>
@@ -24,17 +29,17 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right">Item Description:</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"><Bold>Item Description: </Bold></TextBlock>
         <TextBox x:Name="uxitemDescription" Text="{Binding itemDescription}" Grid.Column="1" Grid.Row="0"></TextBox>
 
-        <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right">Price Per Item:</TextBlock>
-        <TextBox x:Name="uxpricePerItem" Text="{Binding pricePerItem}" Grid.Column="1" Grid.Row="1"></TextBox>
+        <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right"><Bold>Price Per Item:</Bold> </TextBlock>
+        <TextBox x:Name="uxpricePerItem" Text="{Binding pricePerItem,StringFormat='{}{0:C}'}" Grid.Column="1" Grid.Row="1"></TextBox>
 
-        <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right">Quantity On Hand:</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right"><Bold>Quantity On Hand:</Bold> </TextBlock>
         <TextBox x:Name="uxquantityOnHand" Text="{Binding quantityOnHand}" Grid.Column="1" Grid.Row="2"></TextBox>
 
-        <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right">Our Cost Per Item:</TextBlock>
-        <TextBox x:Name="uxourCostPerItem" Text="{Binding ourCostPerItem}" Grid.Column="1" Grid.Row="3"></TextBox>
+        <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"><Bold>Our Cost Per Item:</Bold> </TextBlock>
+        <TextBox x:Name="uxourCostPerItem" Text="{Binding ourCostPerItem,StringFormat='{}{0:C}'}" Grid.Column="1" Grid.Row="3"></TextBox>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right">
             <Button x:Name="uxSubmit"  MinWidth="10" HorizontalAlignment="Center" Click="uxSubmit_Click" Margin="10">Add</Button>
