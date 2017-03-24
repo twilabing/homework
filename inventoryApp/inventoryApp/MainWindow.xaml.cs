@@ -76,6 +76,7 @@ namespace inventoryApp
         private void uxFileDelete_Loaded(object sender, RoutedEventArgs e)
         {
             uxFileDelete.IsEnabled = (selectedItem != null);
+            uxContextFileDelete.IsEnabled = uxFileDelete.IsEnabled;
         }
 
     }

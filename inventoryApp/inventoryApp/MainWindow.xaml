@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:inventoryApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="1000">
+
+    <Window.Background>
+        <ImageBrush ImageSource="/image/flowers.jpg" />
+        <!-- Pick any image that you have-->
+    </Window.Background>
+    
     <StackPanel Orientation="Vertical">
         <Menu>
             <MenuItem Header="_File">
@@ -18,18 +24,18 @@
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="uxContextFileNew" Header="_New" Click="uxFileNew_Click"/>
-                    <MenuItem x:Name="uxContextFileChange" Header="_Modify" Click="uxFileChange_Click" />
-                    <MenuItem x:Name="uxContextFileDelete" Header="_Delete" Click="uxFileDelete_Click" />
+                    <MenuItem x:Name="uxContextFileChange" Header="_Modify" Click="uxFileChange_Click" Loaded="uxFileChange_Loaded"/>
+                    <MenuItem x:Name="uxContextFileDelete" Header="_Delete" Click="uxFileDelete_Click" Loaded="uxFileDelete_Loaded"/>
                 </ContextMenu>
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding itemNum}" Header="Item Number" Width="100" />
                     <GridViewColumn DisplayMemberBinding="{Binding itemDescription}" Header="Item Description" Width="200" />
-                    <GridViewColumn DisplayMemberBinding="{Binding pricePerItem}" Header="Price Per Item" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding pricePerItem,StringFormat='{}{0:C}'}" Header="Price Per Item" Width="100" />
                     <GridViewColumn DisplayMemberBinding="{Binding quantityOnHand}" Header="Quantity On Hand" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding ourCostPerItem}" Header="Our Cost Per Item" Width="100" />
-                    <GridViewColumn DisplayMemberBinding="{Binding valueOfItem}" Header="Value Of Item" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding ourCostPerItem,StringFormat='{}{0:C}'}" Header="Our Cost Per Item" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding valueOfItem,StringFormat='{}{0:C}'}" Header="Value Of Item" Width="100" />
                 </GridView>
             </ListView.View>
         </ListView>
