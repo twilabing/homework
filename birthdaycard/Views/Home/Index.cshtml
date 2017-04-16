@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <style>
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Birthday Card Generator</div>
+    <div> 
+        Create  a custom Birthday Greeting!
+        @Html.ActionLink("Create Greeting", "CardForm")
+    </div>
+    <hr />
+    &copy; 2017 - My ASP.NET Application
+</body>
+</html>

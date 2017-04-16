@@ -1,0 +1,28 @@
+﻿@model birthdaycard.Models.cardInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Card</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        <div class="header">Birthday Card Generator</div>
+        <h4 class="panel-heading text-center">Birthday Card Sent</h4>
+        <div>From: @Model.from</div>
+        <div>To: @Model.to</div>
+        <div>Message: @Model.message</div>
+    </div>
+    <hr />
+    &copy; 2017 - My ASP.NET Application
+
+</body>
+</html>
