@@ -1,0 +1,46 @@
+﻿@using System.Linq;
+@model IEnumerable<Final.Models.ViewModel.ClassMaster>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Get User Classes</title>
+</head>
+<body>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div> 
+        @if (!Model.Any())
+        {
+            <h1>You are not enrolled in any classes.</h1>
+        }
+        else
+        {
+            <h1>Here's the list of your classes</h1>
+            <table class="table">
+                <tr>
+                    <th>Class Name</th>
+                    <th>Class Description</th>
+                    <th>Class Price</th>
+                    <th>Class Sessions</th>
+
+                </tr>
+                @foreach (var localClass in Model)
+                {
+                    <tr>
+                        <td>@localClass.className</td>
+                        <td>@localClass.classDescription</td>
+                        <td>@string.Format("{0:c}", localClass.classPrice)</td>
+                        <td>@localClass.classSessions</td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+}
+</body>
+</html>

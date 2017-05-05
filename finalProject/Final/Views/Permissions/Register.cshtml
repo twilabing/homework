@@ -1,0 +1,21 @@
+﻿@model Final.Models.ViewModel.User
+
+@{
+    ViewBag.Title = "Register";
+}
+
+
+@using (Html.BeginForm("Register", "Permissions", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <h2>Register</h2>
+        <label>Enter desired user name:</label>
+        @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
+        <br />
+        <label>Enter desired password:</label>
+        @Html.EditorFor(model => model.userPassword, new { htmlAttributes = new { @class = "form-control" } })
+        @*<input type="text" name="userID" id="userPassword" />*@
+        <br /><br />
+        <input type="submit" value="Register" class="btn btn-default" />
+
+}

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Final.Models.DB.classMaster>
+
+@{
+    ViewBag.Title = "Enroll in a Class";
+}
+
+@using (Html.BeginForm("Enroll", "Class", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    if (ViewBag.hasCookie == 1)
+    {
+        <div style="margin:20px; text-align:right;width:300px;">
+        
+            Select class you wish to enroll in:
+            @Html.DropDownList("classID", String.Empty)
+            <br /><br />
+            <input type="submit" value="Enroll" class="btn btn-default" />
+        </div>
+    }
+    else
+    {
+        <h1>You must Login before you can enroll</h1>
+    }
+    <div id="LoginMessage">
+        @ViewBag.Message
+    </div>
+}

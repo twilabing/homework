@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Authenticate", "Permissions", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <h2>Login</h2>
+    <div style="margin:20px; text-align:right;width:400px;"> 
+        Enter your user name:
+        <input type="text" name="userName" id="userName"/>
+        <br /><br />
+        Enter your password:
+        <input type="text" name="userPassword" id="userPassword" />
+        <br /><br />
+        <input type="submit" value="Login" class="btn btn-default" />
+    </div>
+    <div id="LoginMessage">
+        @ViewBag.Message
+    </div>
+}

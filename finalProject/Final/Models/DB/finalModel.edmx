@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CE_WebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="classMaster">
+          <Key>
+            <PropertyRef Name="classID" />
+          </Key>
+          <Property Name="classID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="className" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="classDescription" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="classPrice" Type="smallmoney" Nullable="false" />
+          <Property Name="classSessions" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userClasses">
+          <Key>
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="classID" />
+          </Key>
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="classID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="userPassword" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_userClasses_classID">
+          <End Role="classMaster" Type="Self.classMaster" Multiplicity="1" />
+          <End Role="userClasses" Type="Self.userClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classMaster">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="userClasses">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userClasses_userID">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="userClasses" Type="Self.userClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="userClasses">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="RetrieveClassesForStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="mvc">
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="CE_WebModelStoreContainer">
+          <EntitySet Name="classMaster" EntityType="Self.classMaster" Schema="mvc" store:Type="Tables" />
+          <EntitySet Name="userClasses" EntityType="Self.userClasses" Schema="mvc" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="mvc" store:Type="Tables" />
+          <AssociationSet Name="fk_userClasses_classID" Association="Self.fk_userClasses_classID">
+            <End Role="classMaster" EntitySet="classMaster" />
+            <End Role="userClasses" EntitySet="userClasses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userClasses_userID" Association="Self.fk_userClasses_userID">
+            <End Role="users" EntitySet="users" />
+            <End Role="userClasses" EntitySet="userClasses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CE_WebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="classMaster">
+          <Key>
+            <PropertyRef Name="classID" />
+          </Key>
+          <Property Name="classID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="className" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="classDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="classPrice" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="classSessions" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.userClasses" FromRole="classMaster" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="classMasters" Relationship="Self.userClasses" FromRole="users" ToRole="classMaster" />
+        </EntityType>
+        <Association Name="userClasses">
+          <End Role="classMaster" Type="Self.classMaster" Multiplicity="*" />
+          <End Role="users" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CE_WebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="classMasters" EntityType="Self.classMaster" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="userClasses" Association="Self.userClasses">
+            <End Role="classMaster" EntitySet="classMasters" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <FunctionImport Name="RetrieveClassesForStudent" ReturnType="Collection(CE_WebModel.RetrieveClassesForStudent_Result)">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="RetrieveClassesForStudent_Result">
+          <Property Type="Int32" Name="userID" Nullable="false" />
+          <Property Type="Int32" Name="classID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CE_WebModelStoreContainer" CdmEntityContainer="CE_WebEntities">
+          <EntitySetMapping Name="classMasters">
+            <EntityTypeMapping TypeName="CE_WebModel.classMaster">
+              <MappingFragment StoreEntitySet="classMaster">
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="className" ColumnName="className" />
+                <ScalarProperty Name="classDescription" ColumnName="classDescription" />
+                <ScalarProperty Name="classPrice" ColumnName="classPrice" />
+                <ScalarProperty Name="classSessions" ColumnName="classSessions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="CE_WebModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="userClasses" TypeName="CE_WebModel.userClasses" StoreEntitySet="userClasses">
+            <EndProperty Name="classMaster">
+              <ScalarProperty Name="classID" ColumnName="classID" />
+            </EndProperty>
+            <EndProperty Name="users">
+              <ScalarProperty Name="userID" ColumnName="userID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="RetrieveClassesForStudent" FunctionName="CE_WebModel.Store.RetrieveClassesForStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CE_WebModel.RetrieveClassesForStudent_Result">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="classID" ColumnName="classID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
